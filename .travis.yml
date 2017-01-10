@@ -1,0 +1,26 @@
+language: go
+
+sudo: false
+
+go:
+  - 1.7
+  - tip
+
+matrix:
+  allow_failures:
+    - go: tip
+
+script:
+  - make
+  - make release
+
+deploy:
+  provider: releases
+  file: release/countdown*
+  file_glob: true
+  skip_cleanup: true
+  api_key:
+    secure: Y1VJ16Z4Tlznz8fFObsfS4R/r0uPTrd5+hcP0daFlfVqovLwL3utLrsiY2D6TF/LDkrt/0fX7agwILOfqe8dV4jnnGV4J/EmMi3Ev8tOy8SgbHWrEx6jjI3BvROX/qgYQlTppZ/5QTHohP0jEwhCS4UTMrUJHQ9Q7EbtBoJMI+BOrYYZTKa5wVCdjL/JtmQw7rlwi1pAZk5GxxEMx/BbMz0Tc+1BpcrbJJoa8qINULdpFiIsJcLmLQXyPrsX3PIDscyv/8jkMpBKqIx4LL53fvIaP1MdEZ2ub18tUDtSEo1uUyF+DPEXber3qEpqggXSJfa4d0sBqgmPmCK7L/xuKOPmezG2JeXBvaSA8bQ7vZh8eJZ6PIqR0nZwGh4MwIMyhwW+kHi5ZwN6HUxdCYa6kX2U7/oERErXvcnSI66RTLiQuw/Thjty4Cp425HSDVyI1JunUHVN1VQViKl5cymSMqGui2bzuma70wxvlykHPaiXLqKhNj65zCzyQoG0FGWe8nkzBRCtUo3b6M+v4ZqQGRHoAwHCS1lrT9K/IBQ5z0w83ZGG8uD9tDzvCquA7DxlXnJdAjJens2xsiP+69ekmAY1th0dfhVjlP2YQ2Jx2v4gISJY3g3BWbmIwVZZUhBIqcLmIhTaaXt0X5OtH43AF/vg5M0OyCp+ziqwWE25RuA
+  on:
+    repo: justincampbell/countdown
+    tags: true
