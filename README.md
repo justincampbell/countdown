@@ -22,4 +22,4 @@ countdown 5m
 
 The duration is parsed with [Go's time.ParseDuration](https://golang.org/pkg/time/#ParseDuration).
 
-Example durations are `30s`, `5m`, `2h`, or `1h30m`.
+Example durations are `30s`, `5m`, `2h`, or `1h30m`. Omitting the time unit will default to seconds.

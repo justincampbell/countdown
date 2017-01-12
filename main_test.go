@@ -29,3 +29,25 @@ func Test_formatDuration(t *testing.T) {
 		}
 	}
 }
+
+func Test_parseDuration(t *testing.T) {
+	cases := map[string]time.Duration{
+		"5":     5 * time.Second,
+		"2m30s": 2*time.Minute + 30*time.Second,
+	}
+
+	for input, expected := range cases {
+		actual, err := parseDuration(input)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if actual != expected {
+			t.Fatalf(
+				"bad: %#v, expected: %#v, input: %v",
+				actual,
+				expected,
+				input,
+			)
+		}
+	}
+}

@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strconv"
 	"time"
 )
 
@@ -21,7 +22,7 @@ func init() {
 
 	help = fmt.Sprintf(`countdown %s https://github.com/justincampbell/countdown
 usage: countdown DURATION
-example durations: 1m, 2m30s, 3h`, Version)
+example durations: 5, 1m, 2m30s, 3h`, Version)
 }
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	d, err := time.ParseDuration(arg)
+	d, err := parseDuration(arg)
 	if err != nil {
 		fmt.Println(err)
 		fmt.Println(help)
@@ -77,4 +78,12 @@ func formatDuration(d time.Duration) string {
 	s := r % 60
 
 	return fmt.Sprintf("%d:%02d", m, s)
+}
+
+func parseDuration(input string) (time.Duration, error) {
+	if _, err := strconv.Atoi(input); err == nil {
+		input = fmt.Sprintf("%ss", input)
+	}
+
+	return time.ParseDuration(input)
 }
