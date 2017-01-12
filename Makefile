@@ -1,7 +1,7 @@
 NAME := countdown
 
 GOX_OSARCH := darwin/amd64 linux/amd64
-VERSION := 1.0.0
+VERSION := 1.1.0
 
 LDFLAGS := "-X main.Version=$(VERSION)" 
 
