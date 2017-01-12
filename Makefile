@@ -13,6 +13,9 @@ test:
 build:
 	go build -ldflags $(LDFLAGS) -o release/countdown
 
+install: build
+	cp release/countdown /usr/local/bin/countdown
+
 release:
 	go get github.com/mitchellh/gox
 	gox \
